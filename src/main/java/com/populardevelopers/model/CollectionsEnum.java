@@ -10,7 +10,7 @@ package com.populardevelopers.model;
  * @author itla
  */
 public enum CollectionsEnum {
-    USERS(Users.class, "Users");
+    CARS(Cars.class, "Cars");
     
     ;
 

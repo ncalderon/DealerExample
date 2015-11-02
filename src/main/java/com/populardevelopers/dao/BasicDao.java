@@ -6,6 +6,7 @@
 package com.populardevelopers.dao;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -16,7 +17,7 @@ public interface BasicDao<E> {
     public void insert(E entity);
     public void update(E entity);
     public List<E> findAll ();
-    public E findById(String id);
-    public void delete(String id);
+    public E findById(ObjectId id);
+    public void delete(ObjectId id);
 
 }

@@ -6,11 +6,11 @@
 package com.populardevelopers.dao;
 
 import com.populardevelopers.model.CollectionsEnum;
-import com.populardevelopers.utils.JongoUtils;
+import com.populardevelopers.utils.MorphiaUtils;
 import java.util.List;
 import org.bson.types.ObjectId;
-import org.jongo.Jongo;
-import org.jongo.MongoCollection;
+import org.mongodb.morphia.Datastore;
+
 
 /**
  *
@@ -18,37 +18,36 @@ import org.jongo.MongoCollection;
  */
 public class BasicDaoImpl <E> implements BasicDao<E> {
     
-    private MongoCollection collection;
-    private Collection type;
+    private CollectionsEnum type;
+    private Datastore datastore;
     
-    public BasicDaoImpl(CollectionsEnum collection){
-        Jongo jongo = new Jongo(JongoUtils.getMongoClient().getDB(JongoUtils.dbName));
-        this.collection = jongo.getCollection(collection.getCollectionName());
+    public BasicDaoImpl(CollectionsEnum type){
+        this.type = type;
     }
+    
     @Override
     public void insert(E entity) {
-        collection.save(entity);
+        datastore.save(entity);
     }
 
     @Override
     public void update(E entity) {
-        collection.save(entity);
+        datastore.save(entity);
     }
 
     @Override
     public List<E> findAll() {
-        return (List)collection.find().as(null)
-    }
-
-    
-    @Override
-    public E findById(String id) {
-        return (E)collection.findOne(new ObjectId(id)).as();
+        return (List<E>)datastore.createQuery(type.getType()).asList();
     }
 
     @Override
-    public void delete(String id) {
-        collection.remove(id);
+    public E findById(ObjectId id) {
+        return (E) datastore.get(type.getType(), id);
+    }
+
+    @Override
+    public void delete(ObjectId id) {
+        datastore.delete(type.getType(), id);
     }
 
     

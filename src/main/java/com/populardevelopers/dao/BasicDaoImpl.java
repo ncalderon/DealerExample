@@ -19,10 +19,11 @@ import org.mongodb.morphia.Datastore;
 public class BasicDaoImpl <E> implements BasicDao<E> {
     
     private CollectionsEnum type;
-    private Datastore datastore;
+    private Datastore datastore = MorphiaUtils.getDatastore();
     
     public BasicDaoImpl(CollectionsEnum type){
         this.type = type;
+        this.datastore = MorphiaUtils.getDatastore();
     }
     
     @Override

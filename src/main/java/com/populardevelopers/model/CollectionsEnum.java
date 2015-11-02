@@ -10,12 +10,12 @@ package com.populardevelopers.model;
  * @author itla
  */
 public enum CollectionsEnum {
-    CARS(Cars.class, "Cars");
-    
+    CARS(Cars.class, "Cars");    
     ;
 
     private String collectionName;
     private Class type;
+    
     private CollectionsEnum (Class type, String collectionName){
         this.type = type;
         this.collectionName = collectionName;

@@ -1,22 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:composition template="/WEB-INF/include/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.AppName}"></h:outputText>
+<h:head>
+
+</h:head>
+
+<h:body>
+    <ui:composition template="/layout/template.xhtml">
+        <ui:define name="titleContent">Principal</ui:define>
+        <ui:define name="content">
+            <h:form id="containerForm" rendered="#{true}">
+                <p:commandButton rendered="#{false}" id="principal" value="temporal"  type="button" />
+                <h1 class="text-info">Bienvenid@ al Dealer.</h1><br/>
+                <p:graphicImage alt="ibs" library="img" name="ibs-academic.png" class="img-responsive" />
+
+            </h:form>
+
+
         </ui:define>
-        <ui:define name="body">
-            <p:panel header="#{bundle.Welcome}">
-                <p><h:outputText value="#{bundle.WelcomeMessage}"></h:outputText></p>
-            </p:panel>
-
-        </ui:define>
-
     </ui:composition>
 
+
+</h:body>
 </html>
